@@ -1,0 +1,27 @@
+.BoardTile-wrapper {
+  height: 25px;
+  width: 25px;
+  background-color: grey;
+  border: 1px solid rgb(150, 150, 150);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "VT323", monospace;
+  font-size: 20px;
+}
+
+.BoardTile-wrapper:hover {
+  background-color: rgb(150, 150, 150);
+}
+
+.BoardTile-wrapper:active {
+  background-color: rgb(170, 170, 170);
+}
+
+.BoardTile-showed {
+  background-color: rgb(170, 170, 170);
+}
+
+.BoardTile-showed-fail {
+  background-color: rgb(163, 22, 22);
+}
