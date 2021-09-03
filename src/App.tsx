@@ -2,7 +2,6 @@ import * as _ from "lodash";
 import React, { useEffect, useState } from "react";
 
 import GitHubIcon from "@material-ui/icons/GitHub";
-import VideogameAssetIcon from "@material-ui/icons/VideogameAsset";
 import MailIcon from "@material-ui/icons/Mail";
 
 import { BoardTile } from "./components/boardTile/BoardTile";
