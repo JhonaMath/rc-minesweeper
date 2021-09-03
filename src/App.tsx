@@ -1,6 +1,5 @@
 import * as _ from "lodash";
 import React, { useEffect, useState } from "react";
-import logo from "./logo.svg";
 
 import { BoardTile } from "./components/boardTile/BoardTile";
 
@@ -35,17 +34,17 @@ function createBoard(lengthX: number, lengthY: number, bombQty: number) {
     const posX = Math.round(Math.random() * (lengthX - 1)) + 1;
     const posY = Math.round(Math.random() * (lengthY - 1)) + 1;
 
-    if (newBoard[posX][posY] != -1) {
+    if (newBoard[posX][posY] !== -1) {
       newBoard[posX][posY] = -1;
 
-      newBoard[posX + 1][posY + 1] != -1 && newBoard[posX + 1][posY + 1]++;
-      newBoard[posX + 1][posY] != -1 && newBoard[posX + 1][posY]++;
-      newBoard[posX + 1][posY - 1] != -1 && newBoard[posX + 1][posY - 1]++;
-      newBoard[posX - 1][posY + 1] != -1 && newBoard[posX - 1][posY + 1]++;
-      newBoard[posX - 1][posY] != -1 && newBoard[posX - 1][posY]++;
-      newBoard[posX - 1][posY - 1] != -1 && newBoard[posX - 1][posY - 1]++;
-      newBoard[posX][posY + 1] != -1 && newBoard[posX][posY + 1]++;
-      newBoard[posX][posY - 1] != -1 && newBoard[posX][posY - 1]++;
+      newBoard[posX + 1][posY + 1] !== -1 && newBoard[posX + 1][posY + 1]++;
+      newBoard[posX + 1][posY] !== -1 && newBoard[posX + 1][posY]++;
+      newBoard[posX + 1][posY - 1] !== -1 && newBoard[posX + 1][posY - 1]++;
+      newBoard[posX - 1][posY + 1] !== -1 && newBoard[posX - 1][posY + 1]++;
+      newBoard[posX - 1][posY] !== -1 && newBoard[posX - 1][posY]++;
+      newBoard[posX - 1][posY - 1] !== -1 && newBoard[posX - 1][posY - 1]++;
+      newBoard[posX][posY + 1] !== -1 && newBoard[posX][posY + 1]++;
+      newBoard[posX][posY - 1] !== -1 && newBoard[posX][posY - 1]++;
 
       colocatedBombs++;
     }
@@ -61,6 +60,8 @@ function App() {
     bombsQty: 99,
   });
 
+  const { lenghX, lenghY, bombsQty } = boardSettings;
+
   const [board, setBoard] = useState([
     [0, 0, 0],
     [0, 0, 0],
@@ -75,72 +76,70 @@ function App() {
 
   const [losedGame, setLosedGame] = useState(false);
 
-  const { lenghX, lenghY, bombsQty } = boardSettings;
-
   useEffect(() => {
     const lbor = createBoard(lenghX, lenghY, bombsQty);
 
     setNumberBoard(lbor.newBoard);
     setBoard(lbor.zeroBoard);
-  }, []);
+  }, [lenghX, lenghY, bombsQty]);
 
   const auxBoard = board;
 
   const boardCleaner = (row: number, column: number) => {
-    if (row + 1 < lenghX + 1 && auxBoard[row + 1][column] == 0) {
+    if (row + 1 < lenghX + 1 && auxBoard[row + 1][column] === 0) {
       auxBoard[row + 1][column] = 1;
-      if (numberBoard[row + 1][column] == 0) boardCleaner(row + 1, column);
+      if (numberBoard[row + 1][column] === 0) boardCleaner(row + 1, column);
     }
 
-    if (row - 1 > 0 && auxBoard[row - 1][column] == 0) {
+    if (row - 1 > 0 && auxBoard[row - 1][column] === 0) {
       auxBoard[row - 1][column] = 1;
-      if (numberBoard[row - 1][column] == 0) boardCleaner(row - 1, column);
+      if (numberBoard[row - 1][column] === 0) boardCleaner(row - 1, column);
     }
 
-    if (column + 1 < lenghY + 1 && auxBoard[row][column + 1] == 0) {
+    if (column + 1 < lenghY + 1 && auxBoard[row][column + 1] === 0) {
       auxBoard[row][column + 1] = 1;
-      if (numberBoard[row][column + 1] == 0) boardCleaner(row, column + 1);
+      if (numberBoard[row][column + 1] === 0) boardCleaner(row, column + 1);
     }
 
-    if (column - 1 > 0 && auxBoard[row][column - 1] == 0) {
+    if (column - 1 > 0 && auxBoard[row][column - 1] === 0) {
       auxBoard[row][column - 1] = 1;
-      if (numberBoard[row][column - 1] == 0) boardCleaner(row, column - 1);
+      if (numberBoard[row][column - 1] === 0) boardCleaner(row, column - 1);
     }
 
     //corners
-    if (column - 1 > 0 && row - 1 > 0 && auxBoard[row - 1][column - 1] == 0) {
+    if (column - 1 > 0 && row - 1 > 0 && auxBoard[row - 1][column - 1] === 0) {
       auxBoard[row - 1][column - 1] = 1;
-      if (numberBoard[row - 1][column - 1] == 0)
+      if (numberBoard[row - 1][column - 1] === 0)
         boardCleaner(row - 1, column - 1);
     }
 
     if (
       column - 1 > 0 &&
       row + 1 < lenghX + 1 &&
-      auxBoard[row + 1][column - 1] == 0
+      auxBoard[row + 1][column - 1] === 0
     ) {
       auxBoard[row + 1][column - 1] = 1;
-      if (numberBoard[row + 1][column - 1] == 0)
+      if (numberBoard[row + 1][column - 1] === 0)
         boardCleaner(row + 1, column - 1);
     }
 
     if (
       column + 1 < lenghY + 1 &&
       row + 1 < lenghX + 1 &&
-      auxBoard[row + 1][column + 1] == 0
+      auxBoard[row + 1][column + 1] === 0
     ) {
       auxBoard[row + 1][column + 1] = 1;
-      if (numberBoard[row + 1][column + 1] == 0)
+      if (numberBoard[row + 1][column + 1] === 0)
         boardCleaner(row + 1, column + 1);
     }
 
     if (
       column + 1 < lenghY + 1 &&
       row - 1 > 0 &&
-      auxBoard[row - 1][column + 1] == 0
+      auxBoard[row - 1][column + 1] === 0
     ) {
       auxBoard[row - 1][column + 1] = 1;
-      if (numberBoard[row - 1][column + 1] == 0)
+      if (numberBoard[row - 1][column + 1] === 0)
         boardCleaner(row - 1, column + 1);
     }
   };
@@ -150,11 +149,11 @@ function App() {
 
     board.forEach((v) => {
       v.forEach((value) => {
-        if (value == 1) cellShowed++;
+        if (value === 1) cellShowed++;
       });
     });
 
-    if (bombsQty == lenghX * lenghY - cellShowed) alert("You win!");
+    if (bombsQty === lenghX * lenghY - cellShowed) alert("You win!");
   };
 
   return (
@@ -198,22 +197,22 @@ function App() {
         {numberBoard.map((row, indexR) => {
           return row.map((item, index) => {
             return (
-              indexR != 0 &&
-              index != 0 &&
-              indexR != lenghX + 1 &&
-              index != lenghY + 1 && (
+              indexR !== 0 &&
+              index !== 0 &&
+              indexR !== lenghX + 1 &&
+              index !== lenghY + 1 && (
                 <BoardTile
                   nro={item}
                   showed={board[indexR][index]}
-                  flag={board[indexR][index] == TileStates.FLAG}
+                  flag={board[indexR][index] === TileStates.FLAG}
                   onClick={() => {
                     if (losedGame) return;
 
                     //Click bomb
-                    if (numberBoard[indexR][index] == -1) {
+                    if (numberBoard[indexR][index] === -1) {
                       numberBoard.forEach((r, ir) => {
                         r.forEach((c, ic) => {
-                          if (c == -1) auxBoard[ir][ic] = TileStates.SHOWED;
+                          if (c === -1) auxBoard[ir][ic] = TileStates.SHOWED;
                         });
                       });
 
@@ -226,7 +225,7 @@ function App() {
 
                     auxBoard[indexR][index] = TileStates.SHOWED;
 
-                    if (numberBoard[indexR][index] == 0)
+                    if (numberBoard[indexR][index] === 0)
                       boardCleaner(indexR, index);
 
                     setBoard(_.cloneDeep(auxBoard));

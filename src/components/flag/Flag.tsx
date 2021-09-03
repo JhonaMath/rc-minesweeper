@@ -1,8 +1,7 @@
-import React, { useState } from "react";
 import "./Flag.css";
 
 interface FlagTileProps {}
 
-export function Flag(props: any) {
+export function Flag(props: FlagTileProps) {
   return <div className={"Flag-wrapper"} />;
 }

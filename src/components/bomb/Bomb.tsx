@@ -1,8 +1,7 @@
-import React, { useState } from "react";
 import "./Bomb.css";
 
 interface BoardTileProps {}
 
-export function Bomb(props: any) {
+export function Bomb(props: BoardTileProps) {
   return <div className={"Bomb-wrapper"} />;
 }

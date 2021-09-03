@@ -3,8 +3,6 @@ import "./BoardSettings.css";
 export function BoardSettings(props: any) {
   const { lenghX, lenghY, bombsQty, onChange } = props;
 
-  let content: any = <div />;
-
   return (
     <>
       <div className={"BoardSettings-wrapper"}>
