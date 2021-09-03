@@ -1,6 +1,10 @@
 import * as _ from "lodash";
 import React, { useEffect, useState } from "react";
 
+import GitHubIcon from "@material-ui/icons/GitHub";
+import VideogameAssetIcon from "@material-ui/icons/VideogameAsset";
+import MailIcon from "@material-ui/icons/Mail";
+
 import { BoardTile } from "./components/boardTile/BoardTile";
 
 import "./App.css";
@@ -12,6 +16,42 @@ export enum TileStates {
   FLAG = 2,
   IDK = 3,
   EXPLODED = 5,
+}
+
+function TagA(props: any) {
+  return (
+    <a
+      href={props.href}
+      target="_blank"
+      rel="noreferrer"
+      className={"Button-container"}
+      onClick={props.onClick}
+    >
+      {props.children} <div className={"tooltiptext"}>{props.toolTipText}</div>
+    </a>
+  );
+}
+
+function ContactSection() {
+  return (
+    <div className={"App-contact-container "}>
+      <div className={"App-contact-container-buttons "}>
+        <TagA
+          href={"https://github.com/JhonaMath/rc-minesweeper"}
+          toolTipText={"Code!"}
+        >
+          <GitHubIcon fontSize="small" />
+        </TagA>
+        <TagA
+          href={"mailto:jhonathan.barreiro@gmail.com"}
+          toolTipText={"Contact! :)"}
+        >
+          <MailIcon fontSize="small" />
+        </TagA>
+      </div>
+      <div className={"App-contact-version"}>v 0.1.0 </div>
+    </div>
+  );
 }
 
 function createBoard(lengthX: number, lengthY: number, bombQty: number) {
@@ -158,7 +198,11 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">MineSweeper</header>
+      <header className="App-header">
+        <div className={"App-contact-container "} style={{ width: "60px" }} />
+        MineSweeper
+        <ContactSection />
+      </header>
       <div className={"App-options"}>
         <BoardSettings
           lenghX={lenghX}

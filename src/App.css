@@ -14,17 +14,19 @@
 }
 
 .App-header {
+  display: flex;
+  flex-direction: row;
   font-family: "VT323", monospace;
   background-color: #282c34;
   height: 100px;
   font-size: 48px;
 
-  flex-direction: column;
+  /* flex-direction: column; */
   align-items: center;
   justify-content: center;
   /* font-size: calc(10px + 2vmin); */
   color: white;
-  display: grid;
+  /* display: grid; */
   row-gap: 0;
   column-gap: 0;
 }
@@ -81,4 +83,68 @@
   width: 30%;
   border: 3px solid black;
   border-radius: 20px;
+}
+
+.App-contact-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-left: 30px;
+  background-color: var(--primaryColor);
+  align-items: center;
+  justify-content: center;
+  /* height: 250px; */
+  border-radius: 10px;
+}
+
+.App-contact-container-buttons {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.App-contact-version {
+  font-size: small;
+  margin-bottom: 10px;
+  font-family: "VT323", monospace;
+}
+
+.Button-container {
+  position: relative;
+  color: white !important;
+  cursor: pointer;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+}
+
+.Button-container:hover {
+  background: var(--primaryColor);
+}
+
+.Button-container:active {
+  background: var(--primaryColorActive);
+}
+
+.Button-container .tooltiptext {
+  visibility: hidden;
+  font-size: 14px;
+  background-color: #00000044;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+
+  position: absolute;
+  bottom: -30px;
+  z-index: 1;
+}
+
+.Button-container:hover .tooltiptext {
+  visibility: visible;
 }
